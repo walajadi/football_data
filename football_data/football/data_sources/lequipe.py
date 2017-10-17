@@ -36,7 +36,7 @@ class Scrapper:
 
             # get all games of the season.
             if main_req:
-                soup = BeautifulSoup(main_req.content, 'html')
+                soup = BeautifulSoup(main_req.content, , 'html.parser')
 
                 # get all games tables
                 all_games = soup.findAll('select')[0].select('option')
@@ -53,7 +53,7 @@ class Scrapper:
         res = requests.get(url)
         if not res:
             raise Exception('{} is not responding'.format(url))
-        soup = BeautifulSoup(res.content, 'html')
+        soup = BeautifulSoup(res.content, , 'html.parser')
         games = soup.select('.ligne')
         day_number_el = games[0]
         game_day = re.findall('[0-9]+', day_number_el.text)[0]
@@ -91,7 +91,7 @@ class Scrapper:
         if not res:
             raise Exception('{} is not responding'.format(url))
 
-        soup = BeautifulSoup(res.content)
+        soup = BeautifulSoup(res.content, 'html.parser')
 
         home_team_el = soup.find('div', {'id': 'EqDom'})
 
