@@ -2,23 +2,22 @@
 import psycopg2
 import sys
 
+
 class DBConnection(object):
 
-	def __init__(self):
+    def __init__(self):
 
-		self.conn = None
+        self.conn = None
 
-	def set_conn(self, dbname='testdb', user='user_1'):
-		"""
-		"""
-		try:
-			self.con = psycopg2.connect(dbname=dbname, user=user_1)
-			return self.con.cursor() 
-		except psycopg2.DatabaseError as e:
-			print('Error occured at Connection : {}'.format(e))
+    def set_conn(self, dbname='testdb', user='user_1'):
+        """
+            connect to the given db, testdb if not available.
 
-		return None
+        """
+        try:
+            self.con = psycopg2.connect(dbname=dbname, user=user_1)
+            return self.con.cursor()
+        except psycopg2.DatabaseError as e:
+            print('Error occured at Connection : {}'.format(e))
 
-
-
-
+        return None
